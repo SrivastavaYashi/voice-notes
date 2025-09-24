@@ -1,0 +1,132 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: black;
+  font-family: Arial, sans-serif;
+}
+
+.app {
+  min-height: 100vh;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 20px;
+}
+
+.white-container {
+  background-color: white;
+  width: 100%;
+  max-width: 800px;
+  border-radius: 10px;
+  padding: 30px;
+  margin-top: 20px;
+}
+
+h1 {
+  color: black;
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 2.5rem;
+}
+
+.record-button {
+  background-color: black;
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  font-size: 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom: 30px;
+  transition: background-color 0.3s;
+}
+
+.record-button:hover {
+  background-color: #333;
+}
+
+.record-button.recording {
+  background-color: #d32f2f;
+}
+
+.notes-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.note-container {
+  background-color: white;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.note-container h3 {
+  color: black;
+  margin-bottom: 10px;
+  font-size: 1.3rem;
+}
+
+.note-container p {
+  color: #666;
+  line-height: 1.5;
+  margin-bottom: 15px;
+}
+
+.button-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.edit-btn, .delete-btn {
+  background-color: #f0f0f0;
+  color: black;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.3s;
+}
+
+.edit-btn:hover, .delete-btn:hover {
+  background-color: #e0e0e0;
+}
+
+.summary-btn {
+  background-color: black;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.3s;
+}
+
+.summary-btn:hover {
+  background-color: #333;
+}
+
+@media (max-width: 600px) {
+  .white-container {
+    padding: 20px;
+    margin: 10px;
+  }
+  
+  .button-row {
+    flex-direction: column;
+  }
+  
+  .edit-btn, .delete-btn, .summary-btn {
+    width: 100%;
+  }
+}
