@@ -8,13 +8,20 @@ const path = require('path');
 
 const app = express();
 
+// FIX CORS - Add this at the top of your server.js after imports
 app.use(cors({
   origin: [
-    'https://voice-notes-zeta.vercel.app/', 
-    'http://localhost:5173'
+    'https://voice-notes-zeta.vercel.app', // Your Vercel frontend
+    'http://localhost:5173'                 // Local development
   ],
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'Accept'],
   credentials: true
 }));
+
+// Add this for preflight requests
+app.options('*', cors());
+
 app.use(express.json());
 app.use('/uploads',express.static(path.join(__dirname, 'uploads')));
 
