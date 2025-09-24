@@ -7,16 +7,6 @@ const {generateSummary } = require('../utils/aiHelpers');
 
 const router = express.Router();
 
-// GET all notes
-router.get('/', async (req, res) => {
-  try {
-    const notes = await Note.find().sort({ createdAt: -1 });
-    res.json(notes);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-});
-
 
 // Configure multer for audio files
 const storage = multer.diskStorage({
