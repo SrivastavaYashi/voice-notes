@@ -38,24 +38,50 @@ function App() {
     speechRecognition.interimResults = true;
     speechRecognition.lang = 'en-US';
 
-    speechRecognition.onresult = (event) => {
-      let finalTranscript = '';
-      for (let i = event.resultIndex; i < event.results.length; i++) {
-        if (event.results[i].isFinal) {
-          finalTranscript += event.results[i][0].transcript + ' ';
-        }
-      }
-      if (finalTranscript) {
-        setTranscript(prev => prev + finalTranscript);
+    // speechRecognition.onresult = (event) => {
+    //   let finalTranscript = '';
+    //   for (let i = event.resultIndex; i < event.results.length; i++) {
+    //     if (event.results[i].isFinal) {
+    //       finalTranscript += event.results[i][0].transcript + ' ';
+    //     }
+    //   }
+    //   if (finalTranscript) {
+    //     setTranscript(prev => prev + finalTranscript);
         
-        // Auto-generate title from first few words
-        if (!title && finalTranscript.trim()) {
-          const words = finalTranscript.trim().split(' ');
-          const generatedTitle = words.slice(0, 4).join(' ') + (words.length > 4 ? '...' : '');
-          setTitle(generatedTitle);
-        }
-      }
-    };
+    //     // Auto-generate title from first few words
+    //     if (!title && finalTranscript.trim()) {
+    //       const words = finalTranscript.trim().split(' ');
+    //       const generatedTitle = words.slice(0, 4).join(' ') + (words.length > 4 ? '...' : '');
+    //       setTitle(generatedTitle);
+    //     }
+    //   }
+    // };
+
+speechRecognition.onresult = (event) => {
+  let interimTranscript = '';
+  let finalTranscript = '';
+
+  for (let i = event.resultIndex; i < event.results.length; i++) {
+    const transcriptPiece = event.results[i][0].transcript;
+    if (event.results[i].isFinal) {
+      finalTranscript += transcriptPiece + ' ';
+    } else {
+      interimTranscript += transcriptPiece;
+    }
+  }
+
+  // Update transcript in real-time
+  setTranscript(finalTranscript + interimTranscript);
+
+  // Auto-generate title if empty
+  if (!title && (finalTranscript + interimTranscript).trim()) {
+    const words = (finalTranscript + interimTranscript).trim().split(' ');
+    const generatedTitle = words.slice(0, 4).join(' ') + (words.length > 4 ? '...' : '');
+    setTitle(generatedTitle);
+  }
+};
+
+
 
     speechRecognition.onerror = (event) => {
       console.error('Speech recognition error:', event.error);
