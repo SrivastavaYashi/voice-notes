@@ -10,7 +10,7 @@ const app = express();
 // FIX CORS - Add this at the top of your server.js after imports
 app.use(cors({
   origin: [
-    'https://srivastavayashi-voice-notes-zeta.vercel.app/', // Your Vercel frontend
+    'https://srivastavayashi-voice-notes-zeta.vercel.app', // Your Vercel frontend
     'http://localhost:5173'                 // Local development
   ],
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
