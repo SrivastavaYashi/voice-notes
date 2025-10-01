@@ -15,7 +15,7 @@ async function generateSummary(text) {
       throw new Error('Gemini API key not configured');
     }
 
-    const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash-001"});
     
     const prompt = `Please provide a concise 2-3 sentence summary of the following voice note text. Focus on the main points and key ideas:\n\n${text.substring(0, 3000)}`;
     
